@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quick Quacker - Login</title>
-  <link rel="stylesheet" href="login-css.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="login-css.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
   <div class="container">
@@ -32,32 +32,32 @@
       <div class="login-container">
         <h2>Welcome Back!</h2>
         <p class="login-subtitle">Sign in to continue your quacking journey</p>
-        
-        <form id="loginForm" class="login-Form">
+        <form id="loginForm" class="login-form">
           <div class="form-group">
-            <label for="username"><i class="fas fa-user"></i></label>
-            <input type="text" id="username" placeholder="Username" required>
+            <label for="username"><i class="fas fa-envelope"></i></label>
+            <input type="email" id="username" placeholder="Email" required />
           </div>
-          
           <div class="form-group">
             <label for="password"><i class="fas fa-lock"></i></label>
-            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="password" placeholder="Password" required />
             <button type="button" class="toggle-password" title="Show/Hide Password">
               <i class="fas fa-eye"></i>
             </button>
           </div>
-          
           <div class="form-options">
             <div class="remember-me">
-              <input type="checkbox" id="rememberMe">
+              <input type="checkbox" id="rememberMe" />
               <label for="rememberMe">Remember me</label>
             </div>
             <a href="#" class="forgot-password">Forgot Password?</a>
           </div>
-          
           <button type="submit" class="login-button">Sign In</button>
         </form>
-        
+        <!-- Google Sign-In Option -->
+        <div class="divider" style="text-align:center; font-weight:bold; margin: 10px 0;">OR</div>
+        <button type="button" id="googleSignInBtn" class="google-signin-button">
+          <i class="fab fa-google"></i> Sign in with Google
+        </button>
         <div class="signup-option">
           <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         </div>
@@ -65,6 +65,11 @@
     </div>
   </div>
 
+  <!-- Firebase JS SDKs and config -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+  <script src="firebase_config.js"></script>
+  <!-- Custom scripts -->
   <script src="login.js"></script>
 </body>
 </html>

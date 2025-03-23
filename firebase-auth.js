@@ -10,10 +10,9 @@ const firebaseConfig = {
   appId: "1:317713086750:web:3fd0a06bea23973cac310f",
   measurementId: "G-CC93V25X8M"
 };
-
+firebase.initializeApp(firebaseConfig);
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const auth = firebase.auth();
 
 // Check if user is already logged in and redirect them to homepage
 onAuthStateChanged(auth, (user) => {

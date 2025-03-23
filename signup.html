@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quick Quacker - Sign Up</title>
-  <link rel="stylesheet" href="login-css.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="login-css.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     /* Additional styles for signup page */
     .signup-section {
@@ -16,25 +16,21 @@
       justify-content: center;
       align-items: center;
     }
-    
     .signup-container {
       width: 100%;
       max-width: 400px;
     }
-    
     .signup-container h2 {
       font-size: 28px;
       color: #000;
       text-align: center;
       margin-bottom: 10px;
     }
-    
     .signup-subtitle {
       text-align: center;
       color: #555;
       margin-bottom: 30px;
     }
-    
     .signup-button {
       background-color: #ffcc00;
       color: white;
@@ -47,25 +43,21 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
     }
-    
     .signup-button:hover {
       background-color: #e6b800;
       box-shadow: 0 6px 15px rgba(255, 204, 0, 0.4);
       transform: translateY(-2px);
     }
-    
     .login-option {
       margin-top: 20px;
       text-align: center;
       color: #555;
     }
-    
     .login-option a {
       color: #ffcc00;
       text-decoration: none;
       font-weight: bold;
     }
-    
     .login-option a:hover {
       text-decoration: underline;
     }
@@ -73,7 +65,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- Duck Logo Section -->
+    <!-- Duck Logo Section (same as login page) -->
     <div class="duck-logo-section">
       <div class="duck-header">
         <h1>Quick Quacker</h1>
@@ -96,34 +88,28 @@
       <div class="signup-container">
         <h2>Join the Flock!</h2>
         <p class="signup-subtitle">Create your account to start quacking</p>
-        
         <form id="signupForm" class="login-form">
           <div class="form-group">
             <label for="signupUsername"><i class="fas fa-user"></i></label>
-            <input type="text" id="signupUsername" placeholder="Username" required>
+            <input type="text" id="signupUsername" placeholder="Username" required />
           </div>
-          
           <div class="form-group">
             <label for="signupEmail"><i class="fas fa-envelope"></i></label>
-            <input type="email" id="signupEmail" placeholder="Email" required>
+            <input type="email" id="signupEmail" placeholder="Email" required />
           </div>
-          
           <div class="form-group">
             <label for="signupPassword"><i class="fas fa-lock"></i></label>
-            <input type="password" id="signupPassword" placeholder="Password" required>
+            <input type="password" id="signupPassword" placeholder="Password" required />
             <button type="button" class="toggle-password" title="Show/Hide Password">
               <i class="fas fa-eye"></i>
             </button>
           </div>
-          
           <div class="form-group">
             <label for="confirmPassword"><i class="fas fa-lock"></i></label>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
           </div>
-          
           <button type="submit" class="signup-button">Create Account</button>
         </form>
-        
         <div class="login-option">
           <p>Already have an account? <a href="index.html">Sign In</a></p>
         </div>
@@ -131,12 +117,11 @@
     </div>
   </div>
 
-  <!-- Firebase Scripts -->
+  <!-- Firebase JS SDKs and config -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
-  <script src="firebase-config.js"></script>
-  
-  <!-- Your scripts -->
+  <script src="firebase_config.js"></script>
+  <!-- Reuse login.js for shared functions, then signup.js for registration logic -->
   <script src="login.js"></script>
   <script src="signup.js"></script>
 </body>
