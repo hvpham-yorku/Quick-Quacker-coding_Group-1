@@ -80,7 +80,7 @@ We will review and discuss our features, if they are able to be approved. Make c
 ## Sprint 1:
 
 ### Login and Sign-up
-This feature is where users have to creat a an account using their email to use the application
+This feature is where users have to create an account using their email to use the application
 
 ### Task Creation and Organization
 This feature allows users to create tasks and organize based on their priorty of low, medium, or high
