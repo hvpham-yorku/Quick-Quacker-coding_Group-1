@@ -62,6 +62,8 @@ Spikes are research tasks required before development:
 |------|:------------:|:------------:|
 | Implement user login and logout system | Phoebe | 11, 15 
 | Apply task categorization | Amnol | 2
-| Develop virtual pet customization (name, gender, theme) | -- | 4, 14, 17
-| Implement mini-challenges features | -- | 18
-| User Interface (light/dark mode)  | -- | 19, 20 
+| Develop virtual pet customization (name, gender, theme) | Michael | 4, 14, 17
+| Implement mini-challenges features | Michael | 18
+| User Interface (light/dark mode)  | Michael | 19, 20 
+| Update the calendar  | Urgyen |
+| Create the Jira and fix documentation | Kristin |
