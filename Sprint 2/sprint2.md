@@ -49,8 +49,6 @@ The following user stories will be implemented in this sprint:
 - **User Authentication:**
   - #11 As a user, I want to be able to log out of my account.
  
-  - #15 As a user, I want to be able to easily login into my account.
-
 ## Spikes
 Spikes are research tasks required before development:
 - **Authentication and Security:** Research best practices for secure login and logout mae structurenagemenet.
@@ -60,7 +58,7 @@ Spikes are research tasks required before development:
 ## Task Breakdown
 | Task | Assigned To | Target User Story |
 |------|:------------:|:------------:|
-| Implement user login and logout system | Phoebe | 11, 15 
+| Implement user login and logout system | Phoebe | 11
 | Apply task categorization | Amnol | 2
 | Develop virtual pet customization (name, gender, theme) | Michael | 4, 14, 17
 | Implement mini-challenges features | Michael | 18
