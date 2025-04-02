@@ -46,4 +46,5 @@
 
 20. As a user, I want to be able to change the interface of my screen into light mode.
 
-[Trello Link](
+[Trello Link](https://trello.com/invite/b/67c72f898888965233423d8e/ATTIfe05fd82ad7dc6d13193b9c79704709f02731703/quick-quacker)
+[Jira Link](https://kristinovillena.atlassian.net/jira/software/projects/QQ/boards/2?atlOrigin=eyJpIjoiODgxYjI1MjRjMDI0NGE3ZTlhNTRmNmVjYzc1Y2VlZDkiLCJwIjoiaiJ9)
