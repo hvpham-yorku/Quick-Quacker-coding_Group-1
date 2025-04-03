@@ -10,9 +10,15 @@
     <body>
         <!-- Sidebar Navigation -->
         <div class="sidebar" id="sidebar">
-            <div class="sidebar-toggle" id="sidebar-toggle">≡ <span class="sidebar-close">✕</span></div>
             <div class="sidebar-content">
-                <div class="sidebar-header">Menu</div>
+                <div class="sidebar-header">
+                     <!-- Sidebar Toggle Button -->
+                     <div class="sidebar-toggle" id="sidebar-toggle">≡</div>
+                     <!-- Sidebar Close Button -->
+                     <div class="sidebar-close" id="sidebar-close">✕</div>
+                    
+                    <span>Menu</span>
+                </div>
                 <nav class="sidebar-nav">
                     <a href="Duck Homepage.html" class="nav-item active">
                         <span class="nav-icon">🏠</span>
@@ -37,6 +43,7 @@
                 </nav>
             </div>
         </div>
+       
         <!-- Main Content -->
         <div id="mainContent" class="main-content">
             <h1>To-Do List</h1>
@@ -61,6 +68,7 @@
                 <select id="progressSelect" class="progress-select">
                     <option value="Not Started">Not Started</option>
                     <option value="In Progress">In Progress</option>
+                    <option value= "Completed">Completed</option>
                 </select>
                 <button id="addTodo">Add</button>
                 <button id="clearCompleted">Clear Completed</button>
