@@ -2,34 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Duck Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quacker - Profile</title>
   <link rel="stylesheet" href="Homepage.css" />
 </head>
 <body>
-  <div class="profile-container">
-    <button onclick="window.location.href='Virtual_Pet.html'" class="control-btn" style="margin: 20px;">⬅️ Back to Duck</button>
-    <h1 class="header">🐤 Duck Caretaker Profile</h1>
+  <div class="container">
+    <nav class="sidebar-nav">
+      <a href="profile.html" class="nav-item active">
+        <span class="nav-icon">🧑‍💼</span>
+        <span class="nav-text">View Profile</span>
+      </a>
+    </nav>
 
-    <div class="stats-container">
-      <div class="stat">
-        <div class="stat-label">Total Tasks Completed</div>
-        <div class="stat-value" id="totalTasks">0</div>
-      </div>
-      <div class="stat">
-        <div class="stat-label">Longest Streak</div>
-        <div class="stat-value" id="longestStreak">0 days</div>
-      </div>
-      <div class="stat">
-        <div class="stat-label">Days Played</div>
-        <div class="stat-value" id="daysPlayed">0</div>
-      </div>
-    </div>
+    <main class="profile-content">
+      <h1 class="title">Duck Caretaker Profile</h1>
 
-    <div class="profile-details" style="margin: 20px; padding: 20px; background-color: var(--modal-bg); border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--text-color);">Recent Activity</h2>
-      <ul id="recentTasks" style="padding-left: 20px; color: var(--text-color);"></ul>
-    </div>
+      <div class="profile-card">
+        <h2>Stats Overview</h2>
+        <ul class="profile-stats">
+          <li><strong>Duck Name:</strong> <span id="profileDuckName">Loading...</span></li>
+          <li><strong>Level:</strong> <span id="profileLevel">0</span></li>
+          <li><strong>Total Tasks Completed:</strong> <span id="profileTasks">0</span></li>
+          <li><strong>Longest Task Streak:</strong> <span id="profileStreak">0 days</span></li>
+          <li><strong>Quacker Coins:</strong> <span id="profileCoins">0</span></li>
+        </ul>
+
+        <div class="profile-duck-preview">
+          <div class="duck" id="duck">
+            <div class="duck-body"></div>
+            <div class="duck-head"></div>
+            <div class="duck-bill"></div>
+            <div class="duck-eye"></div>
+            <div class="duck-wing"></div>
+          </div>
+        </div>
+
+
+
+        <button onclick="window.location.href='homepage.html'" class="back-btn">⬅️ Return to home</button>
+      </div>
+      
+    </main>
   </div>
 
   <script src="profile.js"></script>
