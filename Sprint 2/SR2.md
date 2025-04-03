@@ -12,28 +12,28 @@
 
 ## Reflection
 **1. What are practices that you should continue during next sprint?**
-  - **Michael:**
+  - **Michael:** In the following sprints, I would like to continue dividing tasks to each team members strengths.
   - **Phoebe:** 
   - **Kristin:** If there was a next sprint, I would like to continue the frequent group meetings. They help the team stay on track and make sure the sprint flow is on time.
   - **Urgyen:** 
   - **Amnol:** 
 
 **2. What are some new practices that you might want to use during next sprint?**
-  - **Michael:**
+  - **Michael:** I would like to have a universal naming standard
   - **Phoebe:** 
   - **Kristin:** I would like to start dividing the tasks more equally. 
   - **Urgyen:** 
   - **Amnol:** 
 
 **3. What are (if any) harmful practices you should stop during next sprint?**
-  - **Michael:**
+  - **Michael:** Not having a universal naming standard across all files.
   - **Phoebe:** 
   - **Kristin:** Not setting proper deadline for each task is something I think we can reduce.  
   - **Urgyen:** 
   - **Amnol:** 
 
 **4. What was your best/worst experience during Sprint 1?**
-  - **Michael:**
+  - **Michael:** Best experince was seeing all the hard work of the team come together and  create a working website for users. 
   - **Phoebe:** 
   - **Kristin:** My worst experience would have to be figuring out Jira since it's much more difficult to use than Trello. 
   - **Urgyen:** 
