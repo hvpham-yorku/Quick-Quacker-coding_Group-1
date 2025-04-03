@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const sidebarClose = document.querySelector('.sidebar-close');
 
     //Toggle sidebar on menu button click
-    sidebarToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('expanded');
+    sidebarToggle.addEventListener('click', function(){
+        sidebar.classList.toggle('expanded');
     });
 
     //Close sidebar on close button click
-    sidebarClose.addEventListener('click', () => {
-    e.stopPropagation();// Prevent triggering the toggle event 
-    sidebar.classList.remove('expanded');
+    sidebarClose.addEventListener('click', function(){
+        e.stopPropagation();// Prevent triggering the toggle event 
+        sidebar.classList.remove('expanded');
     });
 
     // To-Do List functionality with rewards system
@@ -109,6 +109,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <select class="task-progress">
                     <option value="Not-Started" ${progress === 'Not Started' ? 'selected' : ''}>Not Started</option>
                     <option value="in-Progress" ${progress === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                    <option value="Completed" ${progress === 'Completed' ? 'selected' : ''}>Completed</option>
+                </select>
             </div>
             <button class="icon-button check-icon" title="Mark as done">
                 <i class="fas fa-check"></i>
@@ -126,7 +128,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Toggle completed state and give rewards when completed
         const checkButton = taskCard.querySelector('.check-icon');
         checkButton.addEventListener('click', function () {
-            if (!taskCard.classList.contains('completed')) {
+            if (!progressSelect.value === 'Completed') {
+                // Get the current progress value
                 taskCard.classList.add('completed');
 
                 // Add rewards - food and water based on priority
