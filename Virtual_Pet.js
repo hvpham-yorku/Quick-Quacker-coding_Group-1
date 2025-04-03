@@ -11,6 +11,7 @@ let gameState = {
     quackerCoins: 0,
     lastInteraction: Date.now(),
     duckColor: "#ffeb3b", // Default yellow color
+    duckGender: "male", // default
 
     achievements: {
         reachedLevel2: false,
@@ -298,6 +299,22 @@ function updateUI() {
     // Make sure wings are visible
     duckWing.style.display = 'block';
     duckWing.style.opacity = '1';
+    // Show appropriate accessory
+const bowtie = document.getElementById('duckBowtie');
+const bow = document.getElementById('duckBow');
+
+if (bowtie && bow) {
+  bowtie.style.display = gameState.duckGender === 'male' ? 'block' : 'none';
+  bow.style.display = gameState.duckGender === 'female' ? 'block' : 'none';
+}
+const duckEye = document.getElementById('duckEye');
+
+// Reset eyelashes
+duckEye.classList.remove('female');
+
+if (gameState.duckGender === 'female') {
+    duckEye.classList.add('female');
+}
 }
 
 function addQuackerCoins(priority) {
@@ -449,6 +466,8 @@ function openSettings() {
     settingsModal.style.display = 'flex';
     duckNameInput.value = gameState.duckName;
     renderColorSwatches();
+    document.getElementById('genderMale').checked = gameState.duckGender === 'male';
+    document.getElementById('genderFemale').checked = gameState.duckGender === 'female';
 }
 
 function closeSettings() {
@@ -457,6 +476,11 @@ function closeSettings() {
 
 function saveSettings() {
     gameState.duckName = duckNameInput.value.trim() || "Mr. Quackers";
+
+    const selectedGender = document.querySelector('input[name="duckGender"]:checked');
+    if (selectedGender) {
+        gameState.duckGender = selectedGender.value;
+    }
 
     const selectedColor = settingsModal.getAttribute('data-selected-color');
     const colorPrice = parseInt(settingsModal.getAttribute('data-color-price') || 0);
@@ -659,7 +683,7 @@ function selectColor(swatch) {
         "#2196f3": 10, // Blue
         "#4caf50": 15,
         "#e91e63": 20,
-        "#9c27b0": 25
+        "#eb65b1": 25
     };
     const colorPrice = colorPriceMap[selectedColor] ?? 0;
 
@@ -697,8 +721,8 @@ function renderColorSwatches() {
         { name: "Orange", value: "#ff9800", price: 5 },
         { name: "Blue", value: "#2196f3", price: 10 },
         { name: "Green", value: "#4caf50", price: 15 },
-        { name: "Pink", value: "#e91e63", price: 20 },
-        { name: "Purple", value: "#9c27b0", price: 25 }
+        { name: "Red", value: "#e91e63", price: 20 },
+        { name: "Pink", value: "#eb65b1", price: 25 }
     ];
 
     colorOptions.innerHTML = ''; // Clear existing swatches

@@ -673,3 +673,39 @@ input[type="text"] {
     white-space: nowrap;
     pointer-events: none;
 }
+.gender-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  
+  .gender-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  
+  /* Eyelashes for female ducks */
+.duck-eye.female::before,
+.duck-eye.female::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 2px;
+  background-color: black;
+  top: -4px;
+  border-radius: 1px;
+}
+
+.duck-eye.female::before {
+    left: -2px;
+    transform: rotate(60deg);
+  }
+  
+  .duck-eye.female::after {
+    right: 2px;
+    transform: rotate(60deg);
+  }
+  
