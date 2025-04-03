@@ -9,10 +9,6 @@
 <body>
   <div class="container">
     <nav class="sidebar-nav">
-      <a href="Virtual_Pet.html" class="nav-item">
-        <span class="nav-icon">🕹️</span>
-        <span class="nav-text">Play Game</span>
-      </a>
       <a href="profile.html" class="nav-item active">
         <span class="nav-icon">🧑‍💼</span>
         <span class="nav-text">View Profile</span>
@@ -31,8 +27,22 @@
           <li><strong>Longest Task Streak:</strong> <span id="profileStreak">0 days</span></li>
           <li><strong>Quacker Coins:</strong> <span id="profileCoins">0</span></li>
         </ul>
-        <button onclick="window.location.href='Virtual_Pet.html'" class="back-btn">⬅️ Return to Game</button>
+
+        <div class="profile-duck-preview">
+          <div class="duck" id="duck">
+            <div class="duck-body"></div>
+            <div class="duck-head"></div>
+            <div class="duck-bill"></div>
+            <div class="duck-eye"></div>
+            <div class="duck-wing"></div>
+          </div>
+        </div>
+
+
+
+        <button onclick="window.location.href='homepage.html'" class="back-btn">⬅️ Return to home</button>
       </div>
+      
     </main>
   </div>
 
