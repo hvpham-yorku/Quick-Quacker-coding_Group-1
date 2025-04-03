@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Quacker - Dashboard</title>
+  <link rel="stylesheet" href="Homepage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-toggle" id="sidebarToggle">≡ <span class="sidebar-close">✕</span></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">Menu</div>
+      <nav class="sidebar-nav">
+        <a href="homepage.html" class="nav-item active">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-text">Home</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span class="nav-text">Calendar</span>
+        </a>
+        <a href="todo.html" class="nav-item">
+          <span class="nav-icon">✓</span>
+          <span class="nav-text">To-Do List</span>
+        </a>
+        <a href="Virtual_Pet.html" class="nav-item">
+          <span class="nav-icon">🦆</span>
+          <span class="nav-text">Duck Pet</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <span class="nav-icon">👤</span>
+          <span class="nav-text">Profile</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Duck Pet Section -->
+    <div class="duck-pet-section" id="duckPetSection">
+      <div class="duck-header">
+        <h1>Quick Quacker</h1>
+        <p>Your friendly duck companion</p>
+      </div>
+      <div class="duck-display">
+        <div class="pond"></div>
+        <div class="duck">
+          <div class="duck-body"></div>
+          <div class="duck-head"></div>
+          <div class="duck-bill"></div>
+          <div class="duck-eye"></div>
+          <div class="duck-wing"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Organizer Section -->
+    <div class="organizer-section">
+      <!-- Calendar -->
+      <div class="calendar-container">
+        <h2>Calendar</h2>
+        <div class="calendar-header">
+          <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+          <div id="currentMonth"></div>
+          <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+        <div class="calendar-days" id="calendarDays"></div>
+      </div>
+
+      <!-- To-Do List -->
+      <div class="todo-container">
+        <h2>To-Do List</h2>
+        <div class="todo-header">
+          <input type="text" id="todoInput" placeholder="Add a new task...">
+          <select id="prioritySelect" class="priority-select">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <button id="addTodo">Add</button>
+        </div>
+        <div id="todoList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="Homepage.js"></script>
+</body>
+</html>

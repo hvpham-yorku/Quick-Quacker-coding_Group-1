@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Quacker - Calendar</title>
+  <link rel="stylesheet" href="calendar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-toggle" id="sidebarToggle">≡ <span class="sidebar-close">✕</span></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">Menu</div>
+      <nav class="sidebar-nav">
+        <a href="homepage.html" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-text">Home</span>
+        </a>
+        <a href="calendar.html" class="nav-item active">
+          <span class="nav-icon">📅</span>
+          <span class="nav-text">Calendar</span>
+        </a>
+        <a href="todo.html" class="nav-item">
+          <span class="nav-icon">✓</span>
+          <span class="nav-text">To-Do List</span>
+        </a>
+        <a href="virtualpet.html" class="nav-item">
+          <span class="nav-icon">🦆</span>
+          <span class="nav-text">Duck Pet</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <span class="nav-icon">👤</span>
+          <span class="nav-text">Profile</span>
+        </a>
+        <!-- Logout Button -->
+        <a href="index.html" class="nav-item logout-item" id="logoutButton">
+          <span class="nav-icon">🚪</span>
+          <span class="nav-text">Logout</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header Section -->
+    <div class="header">
+      <h1>Calendar</h1>
+      <p>Schedule your quacking time</p>
+    </div>
+
+    <!-- Main Calendar Section -->
+    <div class="calendar-section">
+      <!-- Calendar Navigation -->
+      <div class="calendar-nav">
+        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+        <h2 id="currentMonth">April 2025</h2>
+        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+      </div>
+
+      <!-- Weekday Headers -->
+      <div class="weekdays">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      </div>
+
+      <!-- Calendar Grid -->
+      <div class="calendar-grid" id="calendarDays"></div>
+    </div>
+
+    <!-- Event Details Section -->
+    <div class="event-section">
+      <div class="event-header">
+        <h3>Events for <span id="selectedDate">April 1, 2025</span></h3>
+      </div>
+      
+      <div id="eventsList" class="events-list">
+        <!-- Events will be dynamically added here -->
+      </div>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div id="eventModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add New Event</h3>
+          <button id="closeModal" class="close-modal">×</button>
+        </div>
+        <form id="eventForm">
+          <div class="form-group">
+            <label for="eventTitle">Title:</label>
+            <input type="text" id="eventTitle" placeholder="Event Title" required>
+          </div>
+          <div class="form-group">
+            <label for="eventDate">Date:</label>
+            <input type="date" id="eventDate" required>
+          </div>
+          <div class="form-group">
+            <label for="eventTime">Time:</label>
+            <input type="time" id="eventTime">
+          </div>
+          <div class="form-group">
+            <label for="eventCategory">Category:</label>
+            <select id="eventCategory">
+              <option value="personal">Personal</option>
+              <option value="work">Work</option>
+              <option value="social">Social</option>
+              <option value="health">Health</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="eventDescription">Description:</label>
+            <textarea id="eventDescription" placeholder="Event Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="eventReminder">Reminder:</label>
+            <select id="eventReminder">
+              <option value="none">None</option>
+              <option value="15min">15 minutes before</option>
+              <option value="1hour">1 hour before</option>
+              <option value="1day">1 day before</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn">Save Event</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="calendar.js"></script>
+</body>
+</html>
