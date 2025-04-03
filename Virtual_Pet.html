@@ -6,6 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck Virtual Pet</title>
     <link rel="stylesheet" href="Virtual_Pet.css">
+    <style>
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-swatch.selected {
+            border: 2px solid #333;
+            transform: scale(1.1);
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 
 <body>
@@ -61,7 +87,7 @@
             </div>
             <div class="stat">
                 <div class="stat-label">Quacker Coins</div>
-                <div class="stat-value" id="coinDisplay">0</div>
+                <div class="stat-value" id="coinDisplay">110</div>
                 <div class="coin-icon">🪙</div>
             </div>
         </div>
@@ -97,6 +123,17 @@
             <div class="form-group">
                 <label for="duckName">Duck Name:</label>
                 <input type="text" id="duckName" placeholder="Enter duck name">
+            </div>
+            <div class="form-group">
+                <label for="colorSelection">Duck Color:</label>
+                <div class="color-options" id="colorOptions">
+                    <div class="color-swatch" data-color="#ffeb3b" style="background-color:#ffeb3b;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#ff9800" style="background-color:#ff9800;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#2196f3" style="background-color:#2196f3;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#4caf50" style="background-color:#4caf50;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#e91e63" style="background-color:#e91e63;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#9c27b0" style="background-color:#9c27b0;" onclick="selectColor(this)"></div>
+                </div>
             </div>
             <button class="save-btn" id="saveSettings">Save Settings</button>
         </div>
