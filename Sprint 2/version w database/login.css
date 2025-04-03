@@ -1,4 +1,4 @@
-/* General Styles matching the homepage */
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
 
 .container {
     display: flex;
@@ -74,7 +74,7 @@ body {
     box-shadow: 0 0 20px rgba(102, 204, 255, 0.5);
 }
 
-/* Duck Styling - same as homepage */
+/* Duck Styling */
 .duck {
     position: relative;
     width: 120px;
@@ -85,6 +85,7 @@ body {
     justify-content: center;
     align-items: center;
     animation: float 3s ease-in-out infinite;
+    cursor: pointer;
 }
 
 @keyframes float {
@@ -179,8 +180,12 @@ body {
 }
 
 .login-form {
-    display: flex;
+    display: none;
     flex-direction: column;
+}
+
+.login-form.active {
+    display: flex;
 }
 
 .form-group {
@@ -278,10 +283,125 @@ body {
     color: #ffcc00;
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .signup-option a:hover {
     text-decoration: underline;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.notification.error {
+    background-color: #ff6b6b;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+.quack-bubble {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    animation: bubble 1.5s ease-out forwards;
+    z-index: 10;
+}
+
+.quack-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+}
+
+@keyframes bubble {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 10px);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+}
+
+/* Password Requirements Styling */
+.password-requirements {
+    margin: 0 0 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+}
+
+.password-requirements p {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.password-requirements ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.password-requirements li {
+    margin-bottom: 5px;
+    padding-left: 20px;
+    position: relative;
+    color: #ff6b6b;
+}
+
+.password-requirements li::before {
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #ff6b6b;
+}
+
+.password-requirements li.valid {
+    color: #4CAF50;
+}
+
+.password-requirements li.valid::before {
+    content: "\f00c";
+    color: #4CAF50;
 }
 
 /* Responsive design */

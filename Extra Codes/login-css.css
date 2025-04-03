@@ -1,0 +1,316 @@
+/* General Styles matching the homepage */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.container {
+    display: flex;
+    width: 900px;
+    height: 550px;
+    margin: 0 auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(180deg, #ffee9e 0%, #b3ebdd 100%);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Duck Logo Section */
+.duck-logo-section {
+    width: 45%;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.duck-header {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.duck-header h1 {
+    color: #000;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.duck-header p {
+    color: #555;
+    font-size: 14px;
+}
+
+.duck-display {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.pond {
+    width: 80%;
+    height: 40%;
+    background-color: #66ccff;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20%;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(102, 204, 255, 0.5);
+}
+
+/* Duck Styling - same as homepage */
+.duck {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.duck-body {
+    width: 80px;
+    height: 60px;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+}
+
+.duck-head {
+    width: 50px;
+    height: 50px;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 60px;
+}
+
+.duck-bill {
+    width: 30px;
+    height: 15px;
+    background-color: #ff9800;
+    border-radius: 30%;
+    position: absolute;
+    top: 25px;
+    left: 100px;
+}
+
+.duck-eye {
+    width: 8px;
+    height: 8px;
+    background-color: #555;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 85px;
+}
+
+.duck-wing {
+    width: 40px;
+    height: 20px;
+    background-color: #ffcc4d;
+    border-radius: 50%;
+    position: absolute;
+    top: 45px;
+    left: 30px;
+    transform: rotate(20deg);
+}
+
+/* Login Section */
+.login-section {
+    width: 55%;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h2 {
+    font-size: 28px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input {
+    margin-right: 5px;
+}
+
+.forgot-password {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+}
+
+.login-button:hover {
+    background-color: #e6b800;
+    box-shadow: 0 6px 15px rgba(255, 204, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.signup-option {
+    margin-top: 20px;
+    text-align: center;
+    color: #555;
+}
+
+.signup-option a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-option a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+    
+    .duck-logo-section,
+    .login-section {
+        width: 100%;
+    }
+    
+    .duck-logo-section {
+        padding: 30px;
+        height: 220px;
+    }
+    
+    .duck-header {
+        margin-top: 0;
+    }
+    
+    .duck {
+        transform: scale(0.8);
+    }
+    
+    .login-section {
+        padding: 30px 20px;
+    }
+}

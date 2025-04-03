@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Duck Crossing - Hard Mode</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #87CEEB;
+            font-family: Arial, sans-serif;
+        }
+        
+        #game-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background-color: #7CFC00;
+            border: 4px solid #654321;
+            overflow: hidden;
+        }
+        
+        #duck {
+            position: absolute;
+            width: 30px; /* Smaller duck */
+            height: 30px;
+            background-color: #FFD700;
+            border-radius: 50% 50% 50% 50%;
+            bottom: 10px;
+            left: 280px;
+            z-index: 10;
+            transition: left 0.05s, bottom 0.05s; /* Quicker movement */
+        }
+        
+        #duck:after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 8px;
+            background-color: #FF8C00;
+            top: 15px;
+            left: 25px;
+            border-radius: 50% 50% 50% 50%;
+        }
+        
+        .obstacle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #8B4513;
+            top: -50px;
+        }
+        
+        .fast-obstacle {
+            background-color: #FF0000;
+        }
+        
+        .moving-obstacle {
+            background-color: #800080;
+        }
+        
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        #difficulty {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        #finish-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(
+                90deg,
+                #FFF,
+                #FFF 20px,
+                #000 20px,
+                #000 40px
+            );
+        }
+        
+        #game-over, #game-win {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="finish-line"></div>
+        <div id="duck"></div>
+        <div id="score">Score: 0</div>
+        <div id="difficulty">HARD MODE</div>
+        <div id="game-over">
+            <h1>Game Over!</h1>
+            <p>Your duck got hit!</p>
+            <p id="final-score">Score: 0</p>
+            <button onclick="resetGame()">Try Again</button>
+        </div>
+        <div id="game-win">
+            <h1>You Win!</h1>
+            <p>Your duck made it across safely!</p>
+            <p id="win-score">Score: 0</p>
+            <button onclick="resetGame()">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        const duck = document.getElementById('duck');
+        const gameContainer = document.getElementById('game-container');
+        const scoreDisplay = document.getElementById('score');
+        const gameOver = document.getElementById('game-over');
+        const gameWin = document.getElementById('game-win');
+        const finalScore = document.getElementById('final-score');
+        const winScore = document.getElementById('win-score');
+        
+        let score = 0;
+        let obstacleSpeed = 5; // Faster base speed
+        let obstacleInterval = 800; // More frequent obstacles
+        let isGameOver = false;
+        let obstacles = [];
+        let obstacleCreator;
+        let obstacleTypes = ['normal', 'fast', 'moving'];
+        let duckSlipChance = 0.1; // Chance the duck will slip when moving
+        
+        // Position duck at the bottom center
+        duck.style.left = (gameContainer.offsetWidth / 2 - duck.offsetWidth / 2) + 'px';
+        
+        // Set up key controls
+        document.addEventListener('keydown', moveDuck);
+        
+        function moveDuck(e) {
+            if (isGameOver) return;
+            
+            const duckLeft = parseInt(duck.style.left) || (gameContainer.offsetWidth / 2 - duck.offsetWidth / 2);
+            const duckBottom = parseInt(duck.style.bottom) || 10;
+            const step = 15;
+            
+            // Random chance of slipping (moving in wrong direction)
+            const slip = Math.random() < duckSlipChance;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    if (slip) {
+                        // Slip right instead
+                        if (duckLeft < gameContainer.offsetWidth - duck.offsetWidth) {
+                            duck.style.left = (duckLeft + step) + 'px';
+                        }
+                    } else {
+                        if (duckLeft > 0) {
+                            duck.style.left = (duckLeft - step) + 'px';
+                        }
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (slip) {
+                        // Slip left instead
+                        if (duckLeft > 0) {
+                            duck.style.left = (duckLeft - step) + 'px';
+                        }
+                    } else {
+                        if (duckLeft < gameContainer.offsetWidth - duck.offsetWidth) {
+                            duck.style.left = (duckLeft + step) + 'px';
+                        }
+                    }
+                    break;
+                case 'ArrowUp':
+                    if (slip) {
+                        // Slip down instead
+                        if (duckBottom > 10) {
+                            duck.style.bottom = (duckBottom - step) + 'px';
+                        }
+                    } else {
+                        if (duckBottom < gameContainer.offsetHeight - duck.offsetHeight) {
+                            duck.style.bottom = (duckBottom + step) + 'px';
+                            updateScore(1);
+                            checkWin();
+                        }
+                    }
+                    break;
+                case 'ArrowDown':
+                    if (slip) {
+                        // Slip up instead
+                        if (duckBottom < gameContainer.offsetHeight - duck.offsetHeight) {
+                            duck.style.bottom = (duckBottom + step) + 'px';
+                            updateScore(1);
+                            checkWin();
+                        }
+                    } else {
+                        if (duckBottom > 10) {
+                            duck.style.bottom = (duckBottom - step) + 'px';
+                        }
+                    }
+                    break;
+            }
+        }
+        
+        function createObstacle() {
+            if (isGameOver) return;
+            
+            const obstacle = document.createElement('div');
+            obstacle.classList.add('obstacle');
+            
+            // Random horizontal position
+            const left = Math.random() * (gameContainer.offsetWidth - 50);
+            obstacle.style.left = left + 'px';
+            
+            // Random obstacle type
+            const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
+            obstacle.dataset.type = type;
+            
+            if (type === 'fast') {
+                obstacle.classList.add('fast-obstacle');
+            } else if (type === 'moving') {
+                obstacle.classList.add('moving-obstacle');
+                obstacle.dataset.direction = Math.random() > 0.5 ? 'right' : 'left';
+                obstacle.dataset.speed = 2 + Math.random() * 3;
+            }
+            
+            gameContainer.appendChild(obstacle);
+            obstacles.push(obstacle);
+            
+            moveObstacle(obstacle);
+            
+            // Create two obstacles at once sometimes
+            if (Math.random() < 0.3) {
+                setTimeout(createObstacle, 200);
+            }
+        }
+        
+        function moveObstacle(obstacle) {
+            let topPosition = -50;
+            let speed = obstacleSpeed;
+            
+            if (obstacle.dataset.type === 'fast') {
+                speed *= 1.5; // Fast obstacles move faster
+            }
+            
+            const moveDown = setInterval(() => {
+                if (isGameOver) {
+                    clearInterval(moveDown);
+                    return;
+                }
+                
+                topPosition += speed;
+                obstacle.style.top = topPosition + 'px';
+                
+                // Handle moving obstacles (left-right)
+                if (obstacle.dataset.type === 'moving') {
+                    let leftPos = parseInt(obstacle.style.left) || 0;
+                    const moveSpeed = parseFloat(obstacle.dataset.speed);
+                    
+                    if (obstacle.dataset.direction === 'right') {
+                        leftPos += moveSpeed;
+                        if (leftPos > gameContainer.offsetWidth - obstacle.offsetWidth) {
+                            obstacle.dataset.direction = 'left';
+                        }
+                    } else {
+                        leftPos -= moveSpeed;
+                        if (leftPos < 0) {
+                            obstacle.dataset.direction = 'right';
+                        }
+                    }
+                    
+                    obstacle.style.left = leftPos + 'px';
+                }
+                
+                // Check collision
+                checkCollision(obstacle);
+                
+                // Remove if out of bounds
+                if (topPosition > gameContainer.offsetHeight) {
+                    obstacle.remove();
+                    obstacles = obstacles.filter(o => o !== obstacle);
+                    clearInterval(moveDown);
+                }
+            }, 30);
+        }
+        
+        function checkCollision(obstacle) {
+            const duckRect = duck.getBoundingClientRect();
+            const obstacleRect = obstacle.getBoundingClientRect();
+            
+            if (
+                duckRect.left < obstacleRect.right &&
+                duckRect.right > obstacleRect.left &&
+                duckRect.top < obstacleRect.bottom &&
+                duckRect.bottom > obstacleRect.top
+            ) {
+                endGame(false);
+            }
+        }
+        
+        function checkWin() {
+            const duckBottom = parseInt(duck.style.bottom) || 10;
+            const containerHeight = gameContainer.offsetHeight;
+            
+            if (duckBottom + duck.offsetHeight >= containerHeight - 20) {
+                endGame(true);
+            }
+        }
+        
+        function updateScore(points) {
+            score += points;
+            scoreDisplay.textContent = 'Score: ' + score;
+            
+            // Increase difficulty as score increases
+            if (score % 5 === 0) { // Increase difficulty more frequently
+                obstacleSpeed += 0.5;
+                obstacleInterval = Math.max(300, obstacleInterval - 50);
+                duckSlipChance = Math.min(0.3, duckSlipChance + 0.02); // Increase slip chance
+                
+                clearInterval(obstacleCreator);
+                obstacleCreator = setInterval(createObstacle, obstacleInterval);
+            }
+        }
+        
+        function endGame(isWin) {
+            isGameOver = true;
+            clearInterval(obstacleCreator);
+            
+            if (isWin) {
+                winScore.textContent = 'Score: ' + score;
+                gameWin.style.display = 'flex';
+            } else {
+                finalScore.textContent = 'Score: ' + score;
+                gameOver.style.display = 'flex';
+            }
+        }
+        
+        function resetGame() {
+            // Clear obstacles
+            obstacles.forEach(obstacle => obstacle.remove());
+            obstacles = [];
+            
+            // Reset variables
+            score = 0;
+            obstacleSpeed = 5;
+            obstacleInterval = 800;
+            duckSlipChance = 0.1;
+            isGameOver = false;
+            
+            // Reset duck position
+            duck.style.left = (gameContainer.offsetWidth / 2 - duck.offsetWidth / 2) + 'px';
+            duck.style.bottom = '10px';
+            
+            // Reset score display
+            scoreDisplay.textContent = 'Score: 0';
+            
+            // Hide game over/win screens
+            gameOver.style.display = 'none';
+            gameWin.style.display = 'none';
+            
+            // Restart obstacle creation
+            obstacleCreator = setInterval(createObstacle, obstacleInterval);
+        }
+        
+        // Create multiple obstacles at start
+        function startGame() {
+            obstacleCreator = setInterval(createObstacle, obstacleInterval);
+            // Create initial obstacles
+            for (let i = 0; i < 3; i++) {
+                setTimeout(createObstacle, i * 200);
+            }
+        }
+        
+        // Start the game
+        startGame();
+    </script>
+</body>
+</html>
