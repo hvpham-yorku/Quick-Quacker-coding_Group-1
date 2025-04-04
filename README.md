@@ -93,7 +93,7 @@ This is where accounts will be stored on the server.
 
 # Sprint 2:
 
-###Login and Sign-up
+### Login and Sign-up
 This feature is where users have to create an account using their email to use the application
 
 ### Task Creation and Organization
