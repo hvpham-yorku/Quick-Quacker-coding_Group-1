@@ -567,6 +567,17 @@ body {
     margin-left: 240px;
 }
 
+/* Logout button specific styling */
+.logout-item {
+    margin-top: auto; /* Push logout to the bottom of the sidebar */
+    border-top: 1px solid rgba(153, 102, 51, 0.2); /* Light separator line */
+    padding-top: 15px;
+}
+
+.logout-item:hover {
+    background-color: #ffaa00; /* Slightly different hover color */
+}
+
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
     .sidebar {
@@ -584,4 +595,144 @@ body {
     .sidebar.expanded ~ .container {
         margin-left: 200px;
     }
+}
+
+/* Streak Display Styling */
+.streak-display {
+    background-color: rgba(255, 248, 225, 0.7);
+    padding: 8px 15px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    margin: 5px auto 10px;
+    width: fit-content;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #ffcc00;
+}
+
+.streak-count {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #ff9800;
+}
+
+.streak-count i {
+    margin-right: 5px;
+    color: #ff5722;
+}
+
+.streak-count span {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+/* Calendar streak indicators */
+.streak-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff9800;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+/* Calendar day completion styling */
+.calendar-day.low-completion {
+    background-color: rgba(255, 236, 179, 0.4); /* Light yellow */
+}
+
+.calendar-day.medium-completion {
+    background-color: rgba(255, 213, 79, 0.4); /* Medium yellow */
+}
+
+.calendar-day.high-completion {
+    background-color: rgba(255, 152, 0, 0.4); /* Dark orange */
+}
+
+/* Streak notification */
+.streak-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff5722;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.streak-notification div:first-child {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Add to calendar.css */
+.calendar-day {
+    position: relative; /* Needed for streak indicator positioning */
+}
+
+/* Continuous streak highlighting */
+.calendar-day.streak-day {
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.9), rgba(255, 193, 7, 0.3));
+    border-bottom: 3px solid #ff9800;
+}
+
+/* Calendar legend */
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.legend-color.low {
+    background-color: rgba(255, 236, 179, 0.8);
+    border: 1px solid #ffcc00;
+}
+
+.legend-color.medium {
+    background-color: rgba(255, 213, 79, 0.8);
+    border: 1px solid #ffcc00;
+}
+
+.legend-color.high {
+    background-color: rgba(255, 152, 0, 0.8);
+    border: 1px solid #ff9800;
+}
+
+.legend-color.streak {
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.9), rgba(255, 193, 7, 0.3));
+    border-bottom: 2px solid #ff9800;
 }

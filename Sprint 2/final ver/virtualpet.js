@@ -10,6 +10,9 @@ let gameState = {
     playCount: 0,
     quackerCoins: 0,
     lastInteraction: Date.now(),
+    duckColor: "#ffeb3b", // Default yellow color
+    duckGender: "male", // default
+
     achievements: {
         reachedLevel2: false,
         fed10Times: false,
@@ -45,6 +48,9 @@ if (savedState) {
         }
         
         gameState = parsedState;
+        if (!gameState.duckColor) {
+            gameState.duckColor = "#ffeb3b"; // Default to yellow if missing
+        }
     } catch (e) {
         console.error("Error loading saved game:", e);
     }
@@ -108,7 +114,7 @@ const navItems = document.querySelectorAll('.nav-item');
 navItems.forEach(item => {
     item.addEventListener('click', function(e) {
         // Only prevent default if it's the Duck Pet link that's already active
-        if (item.href.includes('Duck Virtual Pet.html') && item.classList.contains('active')) {
+        if (item.href.includes('Virtual_Pet.html') && item.classList.contains('active')) {
             e.preventDefault();
         }
         
@@ -261,6 +267,8 @@ function updateUI() {
     duckNameDisplay.textContent = gameState.duckName;
     
     // Update level and XP
+    updateDuckSize();
+
     levelDisplay.textContent = gameState.level;
     xpDisplay.textContent = `${gameState.xp}/${gameState.xpToNextLevel}`;
     xpBar.style.width = `${(gameState.xp / gameState.xpToNextLevel) * 100}%`;
@@ -275,9 +283,38 @@ function updateUI() {
     // Update achievement indicators
     updateAchievementDisplay();
     
+    
+    const duckBody = document.querySelector('.duck-body');
+    const duckHead = document.querySelector('.duck-head');
+    const duckWing = document.querySelector('.duck-wing');
+
+    duckBody.style.backgroundColor = gameState.duckColor;
+    duckHead.style.backgroundColor = gameState.duckColor;
+
+    const wingColor = adjustColor(gameState.duckColor, -20);
+    duckWing.style.backgroundColor = wingColor;
+    duckWing.style.display = 'block';
+    duckWing.style.opacity = '1';
+
     // Make sure wings are visible
     duckWing.style.display = 'block';
     duckWing.style.opacity = '1';
+    // Show appropriate accessory
+const bowtie = document.getElementById('duckBowtie');
+const bow = document.getElementById('duckBow');
+
+if (bowtie && bow) {
+  bowtie.style.display = gameState.duckGender === 'male' ? 'block' : 'none';
+  bow.style.display = gameState.duckGender === 'female' ? 'block' : 'none';
+}
+const duckEye = document.getElementById('duckEye');
+
+// Reset eyelashes
+duckEye.classList.remove('female');
+
+if (gameState.duckGender === 'female') {
+    duckEye.classList.add('female');
+}
 }
 
 function addQuackerCoins(priority) {
@@ -428,6 +465,9 @@ function updateAchievementDisplay() {
 function openSettings() {
     settingsModal.style.display = 'flex';
     duckNameInput.value = gameState.duckName;
+    renderColorSwatches();
+    document.getElementById('genderMale').checked = gameState.duckGender === 'male';
+    document.getElementById('genderFemale').checked = gameState.duckGender === 'female';
 }
 
 function closeSettings() {
@@ -435,20 +475,30 @@ function closeSettings() {
 }
 
 function saveSettings() {
-    // Update duck name
     gameState.duckName = duckNameInput.value.trim() || "Mr. Quackers";
-    
-    // Update UI
+
+    const selectedGender = document.querySelector('input[name="duckGender"]:checked');
+    if (selectedGender) {
+        gameState.duckGender = selectedGender.value;
+    }
+
+    const selectedColor = settingsModal.getAttribute('data-selected-color');
+    const colorPrice = parseInt(settingsModal.getAttribute('data-color-price') || 0);
+
+    if (selectedColor && selectedColor !== gameState.duckColor) {
+        if (gameState.quackerCoins >= colorPrice) {
+            gameState.quackerCoins -= colorPrice;
+            gameState.duckColor = selectedColor;
+            showMood(`Color changed! Spent ${colorPrice} Quacker Coins.`);
+        } else {
+            showMood("Not enough Quacker Coins to apply color.");
+            return;
+        }
+    }
+
     updateUI();
-    
-    // Save game
     saveGame();
-    
-    // Close modal
     closeSettings();
-    
-    // Show confirmation
-    showMood("Settings saved!");
 }
 
 function openAchievements() {
@@ -508,6 +558,10 @@ function initializeSidebar() {
         text.style.display = sidebar.classList.contains('expanded') ? 'inline' : 'none';
     });
 }
+
+document.getElementById('playBtn').addEventListener('click', function () {
+    window.location.href = 'game.html';
+});
 
 // Call initialize sidebar on load
 initializeSidebar();
@@ -588,3 +642,104 @@ window.duckRewardSystem = {
     completeTask: completeTask,
     addQuackerCoins: addQuackerCoins
 };
+
+
+function updateDuckSize() {
+    const duck = document.getElementById('duck');
+    const baseSize = 1;
+    const growthFactor = 0.1; // 10% growth per level
+    const newSize = baseSize + ((gameState.level - 1) * growthFactor);
+
+    duck.style.transform = `translateX(-50%) scale(${newSize})`;
+
+    const newBottom = 70 - ((gameState.level - 1) * 5);
+    duck.style.bottom = `${Math.max(30, newBottom)}px`;
+}
+
+
+
+function adjustColor(color, amount) {
+    if (!color || typeof color !== 'string' || !/^#[0-9A-Fa-f]{6}$/.test(color)) {
+        console.warn("Invalid color format passed to adjustColor:", color);
+        color = "#ffeb3b"; // fallback to default yellow
+    }
+
+    let r = parseInt(color.substr(1, 2), 16);
+    let g = parseInt(color.substr(3, 2), 16);
+    let b = parseInt(color.substr(5, 2), 16);
+
+    r = Math.max(0, Math.min(255, r + amount));
+    g = Math.max(0, Math.min(255, g + amount));
+    b = Math.max(0, Math.min(255, b + amount));
+
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
+function selectColor(swatch) {
+    const selectedColor = swatch.getAttribute('data-color');
+    const colorPriceMap = {
+        "#ffeb3b": 0,
+        "#ff9800": 5,
+        "#2196f3": 10, // Blue
+        "#4caf50": 15,
+        "#e91e63": 20,
+        "#eb65b1": 25
+    };
+    const colorPrice = colorPriceMap[selectedColor] ?? 0;
+
+    if (selectedColor === gameState.duckColor) {
+        showMood("That's already your duck's color!");
+        return;
+    }
+
+    // Highlight the selected color
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+    swatch.classList.add('selected');
+
+    // Save the choice for the saveSettings function
+    settingsModal.setAttribute('data-selected-color', selectedColor);
+    settingsModal.setAttribute('data-color-price', colorPrice);
+
+    // Show user how much it will cost
+    showMood(`Color selected! Cost: ${colorPrice} 🪙`);
+}
+window.selectColor = selectColor;
+const colorSwatches = document.querySelectorAll('.color-swatch');
+colorSwatches.forEach(swatch => {
+    const swatchColor = swatch.getAttribute('data-color');
+    swatch.addEventListener('click', () => {
+        selectColor(swatch);
+    });
+});
+
+function renderColorSwatches() {
+    const colorOptions = document.getElementById('colorOptions');
+    if (!colorOptions) return;
+
+    const duckColors = [
+        { name: "Yellow", value: "#ffeb3b", price: 0 },
+        { name: "Orange", value: "#ff9800", price: 5 },
+        { name: "Blue", value: "#2196f3", price: 10 },
+        { name: "Green", value: "#4caf50", price: 15 },
+        { name: "Red", value: "#e91e63", price: 20 },
+        { name: "Pink", value: "#eb65b1", price: 25 }
+    ];
+
+    colorOptions.innerHTML = ''; // Clear existing swatches
+
+    duckColors.forEach(color => {
+        const swatch = document.createElement('div');
+        swatch.className = 'color-swatch';
+        swatch.setAttribute('data-color', color.value);
+        swatch.style.backgroundColor = color.value;
+
+        const priceTag = document.createElement('div');
+        priceTag.className = 'price-tag';
+        priceTag.innerHTML = `${color.price} <span class="coin-icon">🪙</span>`;
+        swatch.appendChild(priceTag);
+
+        swatch.onclick = () => selectColor(swatch);
+
+        colorOptions.appendChild(swatch);
+    });
+}

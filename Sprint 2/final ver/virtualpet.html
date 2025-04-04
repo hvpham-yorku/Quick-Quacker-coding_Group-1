@@ -5,7 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck Virtual Pet</title>
-    <link rel="stylesheet" href="Duck Virtual Pet.css">
+    <link rel="stylesheet" href="virtualpet.css">
+    <style>
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-swatch.selected {
+            border: 2px solid #333;
+            transform: scale(1.1);
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 
 <body>
@@ -15,7 +41,7 @@
         <div class="sidebar-content">
             <div class="sidebar-header">Menu</div>
             <nav class="sidebar-nav">
-                <a href="Duck Homepage.html" class="nav-item">
+                <a href="homepage.html" class="nav-item">
                     <span class="nav-icon">🏠</span>
                     <span class="nav-text">Home</span>
                 </a>
@@ -27,7 +53,7 @@
                     <span class="nav-icon">✓</span>
                     <span class="nav-text">To-Do List</span>
                 </a>
-                <a href="Duck Virtual Pet.html" class="nav-item active">
+                <a href="virtualpet.html" class="nav-item active">
                     <span class="nav-icon">🦆</span>
                     <span class="nav-text">Duck Pet</span>
                 </a>
@@ -35,6 +61,10 @@
                     <span class="nav-icon">👤</span>
                     <span class="nav-text">Profile</span>
                 </a>
+                <a href="index.html" class="nav-item logout-item" id="logoutButton">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                  </a>
             </nav>
         </div>
     </div>
@@ -61,7 +91,7 @@
             </div>
             <div class="stat">
                 <div class="stat-label">Quacker Coins</div>
-                <div class="stat-value" id="coinDisplay">0</div>
+                <div class="stat-value" id="coinDisplay">110</div>
                 <div class="coin-icon">🪙</div>
             </div>
         </div>
@@ -73,12 +103,16 @@
                 <div class="duck-bill"></div>
                 <div class="duck-eye"></div>
                 <div class="duck-wing" id="duckWing"></div>
+                <div id="duckBowtie" class="duck-bowtie"></div>
+                <div id="duckBow" class="duck-bow"></div>
+                <div class="duck-eye" id="duckEye"></div>
             </div>
             <div class="food-emoji" id="foodEmoji">🍞</div>
             <div class="water-emoji" id="waterEmoji">💧</div>
             <div class="level-up" id="levelUp">Level Up!</div>
             <div class="mood" id="mood"></div>
         </div>
+
 
         <div class="controls">
             <button class="control-btn" id="feedBtn">🍞 Feed (<span id="feedCount">0</span>)</button>
@@ -98,6 +132,30 @@
                 <label for="duckName">Duck Name:</label>
                 <input type="text" id="duckName" placeholder="Enter duck name">
             </div>
+            <div class="form-group">
+                <label for="colorSelection">Duck Color:</label>
+                <div class="color-options" id="colorOptions">
+                    <div class="color-swatch" data-color="#ffeb3b" style="background-color:#ffeb3b;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#ff9800" style="background-color:#ff9800;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#2196f3" style="background-color:#2196f3;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#4caf50" style="background-color:#4caf50;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#e91e63" style="background-color:#e91e63;" onclick="selectColor(this)"></div>
+                    <div class="color-swatch" data-color="#9c27b0" style="background-color:#9c27b0;" onclick="selectColor(this)"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="duckGender">Duck Gender:</label>
+                <div class="gender-options">
+                  <label class="gender-option">
+                    <input type="radio" name="duckGender" value="male" id="genderMale">
+                    <span>Male </span>
+                  </label>
+                  <label class="gender-option">
+                    <input type="radio" name="duckGender" value="female" id="genderFemale">
+                    <span>Female </span>
+                  </label>
+                </div>
+              </div>
             <button class="save-btn" id="saveSettings">Save Settings</button>
         </div>
     </div>
@@ -133,7 +191,7 @@
         </div>
     </div>
 
-    <script src="Duck Virtual Pet.js"></script>
+    <script src="virtualpet.js"></script>
 </body>
 
 </html>
