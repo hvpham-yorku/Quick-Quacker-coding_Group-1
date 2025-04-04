@@ -91,7 +91,7 @@ This application has a virtual pet duck that currently levels up the more you pl
 ### Database
 This is where accounts will be stored on the server.
 
-# Sprint 2:
+## Sprint 2:
 
 ### Login and Sign-up
 This feature is where users have to create an account using their email to use the application
