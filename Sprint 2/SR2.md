@@ -42,3 +42,6 @@
   - **Kristin:** My worst experience would have to be figuring out Jira since it's much more difficult to use than Trello. 
   - **Urgyen:** My worst experience would be being late to the in-person meetings.
   - **Amnol:** My worst expirence would be to do the testing of my features.
+
+## Note
+We wanted to do the peer evaluation but the link was not present on eClass.
