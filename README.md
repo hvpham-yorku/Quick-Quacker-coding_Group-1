@@ -93,27 +93,26 @@ This is where accounts will be stored on the server.
 
 # Sprint 2:
 
-Sprint 2:
-Login and Sign-up
+###Login and Sign-up
 This feature is where users have to create an account using their email to use the application
 
-Task Creation and Organization
+### Task Creation and Organization
 This feature allows users to create tasks and organize based on their priorty of low, medium, or high. The features also organises task based on type(Finanical, School, Work, Personal, Health, Other) and status(Not Started, In Progress, Completed), and gives rewards when tasks are finished and marked as done. There is a due date and time associated with every task created. All tasks are stored locally.
 
-Virtual Pet Duck
+###Virtual Pet Duck
 This application has a virtual pet duck that currently levels up the more you play with it. Duck can be customized with a name, gender, and different colours that can be bought with coins.
 
-Database
+### Database
 This is where accounts will be stored on the server.
 
-Calendar
+### Calendar
 This page has a built-in calandar, which marks dates with tasks that are due on that specified day. The bottom of the page displays the events of the day you are on.
 
-Rewards
+### Rewards
 Completing tasks help gain XP, coins, achievements, streaks, completing a task increase you daily streak(which may give more rewards)
 
-Settings
+### Settings
 Allows user to customize duck's name, gender, and colour which is bought with coins
 
-Play
+### Play
 In the duck tab, pressing send users to a minigame which completed will make the duck gain more XP.
