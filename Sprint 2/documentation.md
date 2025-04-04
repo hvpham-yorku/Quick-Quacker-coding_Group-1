@@ -56,7 +56,18 @@ Quick Quacker is designed to help users stay organized and motivated with a touc
 
 ## Project Structure
 
-  quick-quacker/ ├── index.html # Login page ├── homepage.html # Dashboard with calendar and tasks ├── Virtual_Pet.html # Interactive duck pet game ├── profile.html # Profile stats and task history ├── game.html # Minigame: Duck Crossing │ ├── Homepage.js # JS for dashboard features ├── Virtual_Pet.js # Duck behavior, mood, customization ├── profile.js # Profile logic & streaks │ ├── Homepage.css # Main styling for layout ├── Virtual_Pet.css # Styling for pet game │ └── README.md # This documentation
+The project consists of multiple pages and components:
+
+- `index.html`: Login page  
+- `homepage.html`: Main dashboard with calendar and to-do list  
+- `Virtual_Pet.html`: Interactive duck pet experience  
+- `profile.html`: User stats and task history  
+- `game.html`: Minigame (Duck Crossing) to earn in-game currency  
+- `Homepage.js`: Logic for calendar, task creation, and rewards  
+- `Virtual_Pet.js`: Duck state management, feeding, customization, XP  
+- `profile.js`: Tracks streaks, recent activity, and displays progress  
+- `Homepage.css` and `Virtual_Pet.css`: Styling for all pages  
+
 ---
 
 ## User Guide
