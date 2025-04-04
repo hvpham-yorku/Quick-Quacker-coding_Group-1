@@ -8,8 +8,12 @@
 - Amnol Misra
 
 ## Unfinished Tasks and Stories 
-  All user stories have been completed.
+  These user stories remained incomplete due to time constraints: 
 
+  - #19 As a user, I want to be able to change the interface of my screen into dark mode.
+
+  - #20 As a user, I want to be able to change the interface of my screen into light mode.
+  
 ## Reflection
 **1. What are practices that you should continue during next sprint?**
   - **Michael:** In the following sprints, I would like to continue dividing tasks to each team members strengths.
