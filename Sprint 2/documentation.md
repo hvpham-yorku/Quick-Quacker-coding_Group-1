@@ -2,6 +2,7 @@
 
 Quick Quacker is a gamified task manager that combines productivity with pet care. Complete tasks, earn in-game rewards, and care for your virtual duck by feeding, watering, and customizing it. Keep your streaks alive and watch your duck evolve with you.
 
+TRY IT ---> https://82b9-70-30-141-96.ngrok-free.app/ 
 ---
 
 ## Overview
