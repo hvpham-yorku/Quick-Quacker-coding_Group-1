@@ -77,7 +77,7 @@ Create a new pull request with your branch merging into main
 We will review and discuss our features, if they are able to be approved. Make changes and fix issues according to what was found in the discussions and review
 
 
-## Sprint 1:
+## Sprint 2:
 
 ### Login and Sign-up
 This feature is where users have to create an account using their email to use the application
