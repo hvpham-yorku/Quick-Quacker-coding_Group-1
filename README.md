@@ -83,7 +83,7 @@ We will review and discuss our features, if they are able to be approved. Make c
 This feature is where users have to create an account using their email to use the application
 
 ### Task Creation and Organization
-This feature allows users to create tasks and organize based on their priorty of low, medium, or high. The features also organises task based on type(Finanical, School, Work, Personal, Health, Other) and status(Not Started, In Progress, Completed), and gives rewards when tasks are finished and marked as done. There is a due date and time associated with every task created.
+This feature allows users to create tasks and organize based on their priorty of low, medium, or high. The features also organises task based on type(Finanical, School, Work, Personal, Health, Other) and status(Not Started, In Progress, Completed), and gives rewards when tasks are finished and marked as done. There is a due date and time associated with every task created. All tasks are stored locally.
 
 ### Virtual Pet Duck
 This application has a virtual pet duck that currently levels up the more you play with it. Duck can be customized with a name, gender, and different colours that can be bought with coins. 
