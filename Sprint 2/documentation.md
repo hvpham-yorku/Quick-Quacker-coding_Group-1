@@ -85,4 +85,50 @@ Quick Quacker is designed to help users stay organized and motivated with a touc
 
 ---
 
+## Database Schema
+
+This project uses a single table to store user login information.
+
+### Table: `users`
+
+| Column Name | Data Type | Description                         |
+|-------------|-----------|-------------------------------------|
+| `id`        | INT       | Primary key, auto-incremented       |
+| `username`  | VARCHAR   | Unique username for login           |
+| `email`     | VARCHAR   | User's email address                |
+| `password`  | VARCHAR   | Hashed password                     |
+| `created_at`| TIMESTAMP | Time of registration (default now)  |
+
+### Example SQL:
+
+sql
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+## Installation & Local Setup
+
+To run Quick Quacker locally on your machine:
+
+### Prerequisites
+- [XAMPP](https://www.apachefriends.org/index.html) installed (Apache + MySQL)
+- [ngrok](https://ngrok.com/) installed (for public access)
+
+### Steps
+
+1. **Clone or Download the Project**
+
+    git clone https://github.com/your-username/Quick-Quacker-coding_Group-1.git
+
+2. Open XAMPP, start Apache and MySQL
+
+3. Place the files in your `htdocs/` directory
+
+4. Import the database into phpMyAdmin (if applicable)
+
+5. Use ngrok to expose the site:
 
