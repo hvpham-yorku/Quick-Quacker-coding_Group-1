@@ -1,0 +1,711 @@
+/* Variables */
+:root {
+    --duck-yellow: #ffeb3b;
+    --duck-orange: #ff9800;
+    --duck-brown: #996633; 
+    --pond-blue: #66ccff;
+    --light-blue: #87CEEB;
+    --reed-green: #228B22;
+    --bread-brown: #D2691E;
+    --water-blue: #00BFFF;
+    --sidebar-bg: #ffdc73; 
+    --sidebar-text: #996633; 
+    --sidebar-hover: #ffcc00; 
+    --sidebar-active: #ff9800; 
+}
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 600px;
+    background: linear-gradient(180deg, #ffee9e 0%, #b3ebdd 100%);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1;
+    margin-left: 68px; 
+    transition: margin-left 0.3s ease;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 68px;
+    background-color: var(--sidebar-bg);
+    border-right: 2px solid var(--sidebar-active); /* Added border from second CSS */
+    color: var(--sidebar-text);
+    transition: width 0.3s ease;
+    z-index: 100;
+    overflow: hidden;
+    display: block !important;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Added shadow from second CSS */
+}
+
+.sidebar.expanded {
+    width: 240px;
+}
+
+.sidebar-toggle {
+    position: relative;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    text-align: left;
+    font-size: 24px;
+    color: var(--sidebar-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Close button for sidebar - Added from second CSS */
+.sidebar-close {
+    display: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--sidebar-text);
+}
+
+.sidebar.expanded .sidebar-close {
+    display: block;
+}
+
+.sidebar-toggle:hover {
+    background-color: var(--sidebar-hover);
+}
+
+.sidebar-header {
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    border-bottom: 1px solid rgba(153, 102, 51, 0.2); /* Light brown border from second CSS */
+    color: var(--sidebar-text);
+}
+
+.sidebar-content {
+    width: 240px; /* Match the expanded width */
+}
+
+.sidebar-nav {
+    padding: 10px 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 0 25px 25px 0; /* Added from second CSS */
+    margin: 5px 0;
+}
+
+.nav-item:hover {
+    background-color: var(--sidebar-hover);
+}
+
+.nav-item.active {
+    background-color: var(--sidebar-active);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.nav-text {
+    white-space: nowrap;
+    font-weight: 500; /* Added from second CSS */
+}
+
+.sidebar.expanded .nav-text {
+    display: inline !important;
+}
+
+/* Adjust the container margin for the sidebar */
+.sidebar.expanded ~ .game-container {
+    margin-left: 240px;
+}
+
+/* Header Section */
+.header {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.duck-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Stats Container */
+.stats-container {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-bottom: 3px solid rgba(255, 204, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat {
+    text-align: center;
+    padding: 10px;
+    flex: 1;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.progress-container {
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.xp-bar {
+    background-color: var(--duck-yellow);
+}
+
+/* Game Area */
+.game-area {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(to bottom, var(--light-blue) 70%, var(--pond-blue) 70%);
+    overflow: hidden;
+}
+
+/* Duck Styling - Improved visibility for wings */
+.duck {
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s ease;
+}
+
+.duck-body {
+    position: absolute;
+    width: 80px;
+    height: 60px;
+    background-color: var(--duck-yellow);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    z-index: 2;
+}
+
+.duck-head {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: var(--duck-yellow);
+    border-radius: 50%;
+    top: -20px;
+    left: 60px;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+
+.duck-bill {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background-color: var(--duck-orange);
+    border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%;
+    top: 15px;
+    left: 90px;
+    z-index: 4;
+}
+
+.duck-eye {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    top: 5px;
+    left: 80px;
+    z-index: 5;
+}
+
+.duck-wing {
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    background-color: #FFC125;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: 15px;
+    left: 15px;
+    transform-origin: 100% 50%;
+    z-index: 3; /* Increased z-index to make wing more visible */
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.1); /* Add subtle border for better visibility */
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.1); /* Add subtle shadow for depth */
+}
+
+/* Game Controls */
+.controls {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.control-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffcc00;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn:hover {
+    background-color: var(--duck-orange);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+/* Game Elements */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    bottom: 60px;
+    opacity: 0;
+}
+
+.level-up {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--duck-yellow);
+    color: var(--duck-brown);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mood {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Settings */
+.settings {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.save-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+.save-btn:hover {
+    background-color: var(--duck-orange);
+    color: white;
+}
+
+/* Achievements */
+.achievements-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.coin-icon {
+    font-size: 1.2rem;
+    color: var(--duck-orange);
+    margin-top: 5px;
+    animation: coinSpin 3s infinite linear;
+    display: inline-block;
+}
+
+@keyframes coinSpin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+.achievement {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    border-left: 5px solid var(--duck-yellow);
+    opacity: 0.5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.achievement.unlocked {
+    opacity: 1;
+    border-left: 5px solid var(--duck-orange);
+}
+
+.achievement-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.achievement-desc {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes flap {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Food and Water Emoji Animations */
+.food-emoji, .water-emoji {
+    position: absolute;
+    font-size: 24px;
+    top: -50px;
+    opacity: 0;
+    transition: all 1s ease;
+    z-index: 6;
+}
+
+.food-emoji {
+    left: 30%;
+}
+
+.water-emoji {
+    right: 30%;
+}
+
+/* Animation for falling food and water */
+@keyframes fallDown {
+    0% {
+        top: -50px;
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        top: 120px;
+        opacity: 0;
+    }
+}
+
+/* Adding a medal icon to unlocked achievements */
+.achievement.unlocked .achievement-title::before {
+    content: "🏅 ";
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .game-container {
+        margin-left: 50px; /* Smaller margin for mobile */
+    }
+    
+    .sidebar {
+        width: 50px;
+    }
+    
+    .sidebar.expanded {
+        width: 200px;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+    }
+    
+    .stat {
+        margin-bottom: 10px;
+    }
+    
+    .game-area {
+        height: 250px;
+    }
+    
+    .duck {
+        width: 100px;
+        height: 70px;
+        transform: translateX(-50%) scale(0.8);
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .control-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-width: 350px;
+    }
+    
+    .achievements-list {
+        max-height: 250px;
+    }
+
+    .sidebar.expanded ~ .game-container {
+        margin-left: 200px;
+    }
+}
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Previously 10px */
+    margin-top: 10px;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.selected {
+    border: 3px solid #333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+.price-tag {
+    position: absolute;
+    bottom: -25px; /* Increased spacing from -18px */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #333;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.gender-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  
+  .gender-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  
+  /* Eyelashes for female ducks */
+.duck-eye.female::before,
+.duck-eye.female::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 2px;
+  background-color: black;
+  top: -4px;
+  border-radius: 1px;
+}
+
+.duck-eye.female::before {
+    left: -2px;
+    transform: rotate(60deg);
+  }
+  
+  .duck-eye.female::after {
+    right: 2px;
+    transform: rotate(60deg);
+  }
+  

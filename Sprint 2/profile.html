@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quacker - Profile</title>
+  <link rel="stylesheet" href="homepage.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar-nav">
+      <a href="profile.html" class="nav-item active">
+        <span class="nav-icon">🧑‍💼</span>
+        <span class="nav-text">View Profile</span>
+      </a>
+    </nav>
+
+    <main class="profile-content">
+      <h1 class="title">Duck Caretaker Profile</h1>
+
+      <div class="profile-card">
+        <h2>Stats Overview</h2>
+        <ul class="profile-stats">
+          <li><strong>Duck Name:</strong> <span id="profileDuckName">Loading...</span></li>
+          <li><strong>Level:</strong> <span id="profileLevel">0</span></li>
+          <li><strong>Total Tasks Completed:</strong> <span id="profileTasks">0</span></li>
+          <li><strong>Longest Task Streak:</strong> <span id="profileStreak">0 days</span></li>
+          <li><strong>Quacker Coins:</strong> <span id="profileCoins">0</span></li>
+        </ul>
+
+        <div class="profile-duck-preview">
+          <div class="duck" id="duck">
+            <div class="duck-body"></div>
+            <div class="duck-head"></div>
+            <div class="duck-bill"></div>
+            <div class="duck-eye"></div>
+            <div class="duck-wing"></div>
+          </div>
+        </div>
+
+
+
+        <button onclick="window.location.href='homepage.html'" class="back-btn">⬅️ Return to home</button>
+      </div>
+      
+    </main>
+  </div>
+
+  <script src="profile.js"></script>
+</body>
+</html>
