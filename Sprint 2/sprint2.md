@@ -19,11 +19,11 @@ The following team members are involved in this release:
 
 ## Team Capacity
 Each team member's estimated available hours for this sprint:
-- **Product Owner [Michael]:** 20 hours
-- **Developer 1 [Phoebe]:** 20 hours
-- **Developer 2 [Amnol]:** 20 hourss
-- **Developer 3 [Urgyen]:** 20 hours
-- **Scrum Master [Kristin]:** 20 hours
+- **Product Owner [Michael]:** 36 hours
+- **Developer 1 [Phoebe]:** 36 hours
+- **Developer 2 [Amnol]:** 25 hourss
+- **Developer 3 [Urgyen]:** 25 hours
+- **Scrum Master [Kristin]:** 30 hours
 
 ## User Stories for Sprint 2:
 The following user stories will be implemented in this sprint:
