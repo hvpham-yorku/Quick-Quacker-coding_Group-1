@@ -128,10 +128,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // Toggle completed state and give rewards when completed
         const checkButton = taskCard.querySelector('.check-icon');
         checkButton.addEventListener('click', function () {
-            if (!progressSelect.value === 'Completed') {
-                // Get the current progress value
+            const progressDropdown = taskCard.querySelector('.task-progress');
+            if (progressDropdown.value === 'Completed' && !taskCard.classList.contains('completed')) {
+                // Mark task as completed
                 taskCard.classList.add('completed');
-
                 // Add rewards - food and water based on priority
                 let foodReward = 1;
                 let waterReward = 1;
