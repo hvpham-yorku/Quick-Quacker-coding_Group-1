@@ -1,0 +1,426 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-left: 70px; /* Space for collapsed sidebar */
+    transition: margin-left 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(180deg, #ffee9e 0%, #b3ebdd 100%);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* To-Do List Styles */
+.todo-container {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(179, 235, 221, 0.4); /* Light mint background matching the bottom gradient */
+    border-radius: 15px;
+    margin-left: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.todo-container h2 {
+    text-align: center;
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.todo-header {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.todo-header input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    color: #555;
+}
+
+.priority-select {
+    width: 100px;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    color: #555;
+}
+
+.todo-header button {
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#todoList {
+    list-style-type: none;
+    max-height: calc(100% - 80px);
+    overflow-y: auto;
+    padding-right: 5px; /* Add a little padding for scrollbar */
+}
+
+.main-content{
+    margin-left: 68px; /* Matches the default width of the sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease; /* Smooth transition when sidebar expands */
+    z-index: 1; /* Ensure it stays above the sidebar */
+    position: relative;
+}
+
+.task-card {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Update task card styling based on priority */
+.task-card.priority-high {
+    background-color: rgba(255, 107, 107, 0.2); /* Light red background */
+    border-left: 4px solid #ff6b6b; /* Red left border */
+}
+
+.task-card.priority-medium {
+    background-color: rgba(255, 211, 105, 0.2); /* Light orange background */
+    border-left: 4px solid #ffd369; /* Orange left border */
+}
+
+.task-card.priority-low {
+    background-color: rgba(87, 204, 153, 0.2); /* Light green background */
+    border-left: 4px solid #57cc99; /* Green left border */
+}
+
+.task-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.task-text {
+    color: #333;
+    flex: 1;
+}
+
+.task-priority {
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.task-type {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+.task-progress {
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.task-progress:hover {
+    border-color: #007bff; 
+}
+
+.task-progress:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.priority-high {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.priority-medium {
+    background-color: #ffd369;
+    color: #333;
+}
+
+.priority-low {
+    background-color: #57cc99;
+    color: white;
+}
+
+/* Style for the icons */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-left: 8px;
+    transition: background-color 0.2s;
+}
+
+.check-icon {
+    color: #4CAF50; /* Green */
+}
+
+.trash-icon {
+    color: #F44336; /* Red */
+}
+
+.icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.completed .task-text {
+    text-decoration: line-through;
+    color: #6d3b1a;
+}
+
+.completed .check-icon {
+    background-color: #4CAF50;
+    color: white;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .organizer-section {
+        flex-direction: column;
+    }
+    
+    .calendar-container,
+    .todo-container {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+    
+    .calendar-days {
+        font-size: 12px; /* Even smaller font size for mobile */
+    }
+    
+    .calendar-days div {
+        height: 24px; /* Smaller height for mobile */
+    }
+}
+
+/* Reward notification */
+.reward-notification {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+.reward-notification div:first-child {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.reward-icon {
+    display: inline-block;
+    margin: 0 2px;
+}
+
+/* Completed task styling */
+.task-card.completed {
+    background-color: #f0f8f0;
+    border-left: 4px solid #4caf50;
+    opacity: 0.8;
+}
+
+.task-card.completed .task-text {
+    text-decoration: line-through;
+    color: #666;
+}
+
+.task-card.completed .check-icon {
+    background-color: #4caf50;
+    color: white;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -240px;
+    height: 100%;
+    width: 300px;
+    background-color: #ffdc73; /* Duck yellow for background */
+    border-right: 2px solid #ff9800; /* Orange border */
+    color: #333;
+    transition: width 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+    display: block !important;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.expanded {
+    left: 0; /* Show sidebar when expanded */
+}
+
+
+.sidebar-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+    text-align: left;
+    height: auto;
+    font-size: 18px;
+    background-color: #ffdc73; /* Duck yellow for background */
+    color: #996633; /* Duck brown for icon */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 101;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Close button for sidebar */
+.sidebar-close {
+    display: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #996633;
+}
+
+.nav-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.nav-text {
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.sidebar.expanded .sidebar-close {
+    display: block;
+}
+
+.sidebar-toggle:hover {
+    background-color: #ffcc00; /* Brighter yellow for hover */
+}
+
+.sidebar-header {
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    border-bottom: 1px solid rgba(153, 102, 51, 0.2); /* Light brown border */
+    color: #996633; /* Duck brown for text */
+}
+
+.sidebar-content {
+    width: 240px; /* Match the expanded width */
+}
+
+.sidebar-nav {
+    padding: 10px 0;
+}
+
+
+.sidebar.expanded .nav-text {
+    display: inline !important;
+}
+
+/* Adjust the container margin for the sidebar */
+.sidebar.expanded ~ .container {
+    margin-left: 240px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 50px;
+    }
+    
+    .sidebar.expanded {
+        width: 200px;
+    }
+
+    .container {
+        margin-left: 50px; /* Smaller margin for mobile */
+    }
+
+    .sidebar.expanded ~ .container {
+        margin-left: 200px;
+    }
+}
