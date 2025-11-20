@@ -2,6 +2,10 @@
 
 Quacker is a web-based task manager with gamification elements designed to help young adults organize their tasks in a fun and engaging way.
 
+## Demo:
+
+Here is a demostration of how this web application functions: # [Quick Quacker Sprint 2 Demo](https://drive.google.com/file/d/14YTKqjjomS3V5mj7S5YM-IImiZJN1QaY/view?usp=sharing)
+
 ## Motivation:
 
 Quacker adds a unique twist to traditional task management by turning productivity into a game-like experience. Instead of viewing tasks as chores, users complete them to earn food and nurture their virtual duck, making organization more rewarding. Neglecting tasks can result in the duck acting sad, refusing to evolve, or reacting humorously to missed responsibilities. To encourage consistency to users, daily streaks will unlock special rewards based on task completion habits, reinforcing positive behaviour. The goal is to create an intuitive, feature-rich task manage that seasmlessly blends habit information, making productivity more enjoyable and effective. 
